@@ -51,9 +51,9 @@ Este projeto é uma API RESTful desenvolvida com **Quarkus** para registrar e co
 
 ## 🔁 Relacionamentos
 
-- **One-to-Many:** SerialKiller → Crimes
-- **Many-to-Many:** Crime ↔ Vítimas
-- **Optional One-to-One (se desejar):** pode ser usado futuramente para "Investigador Responsável" ou "Perfil Psicológico"
+- **One-to-Many:** SerialKiller → Crimes  
+- **Many-to-Many:** Crime ↔ Vítimas  
+- **Optional One-to-One (futuramente):** exemplo: Investigador Responsável, Perfil Psicológico
 
 ---
 
@@ -92,9 +92,8 @@ Este projeto é uma API RESTful desenvolvida com **Quarkus** para registrar e co
 
 ## 📚 Documentação da API
 
-Acesse o Swagger UI em:
+Acesse o Swagger UI em:  
 http://localhost:8080/q/swagger-ui/
-
 
 Você encontrará descrições completas dos endpoints, exemplos de uso e respostas esperadas.
 
@@ -108,22 +107,34 @@ Você encontrará descrições completas dos endpoints, exemplos de uso e respos
 
 O projeto será iniciado em http://localhost:8080
 
-💌 Exemplos de Uso (via curl)
-Criar Serial Killer
+---
+
+## 💌 Exemplos de Uso (via curl)
+
+### Criar Serial Killer
+```bash
 curl -X POST http://localhost:8080/serial-killers \
   -H "Content-Type: application/json" \
   -d '{"nomeCompleto": "John Wayne Gacy", "alcunha": "Killer Clown", "nacionalidade": "Americana"}'
-  
-Criar Crime
+```
+
+### Criar Crime
+```bash
 curl -X POST http://localhost:8080/crimes \
   -H "Content-Type: application/json" \
   -d '{"descricao": "Ataque brutal", "data": "1978-05-22", "tipoCrime": "ASSASSINATO"}'
+```
 
-👻 Observações
-Este projeto é fictício e acadêmico, sem fins educativos.
+---
+
+## 👻 Observações
+
+Este projeto é fictício e acadêmico, sem fins educativos.  
 Nenhuma apologia a crimes reais. Todos os dados usados são públicos ou simulados.
 
-🪦 Autora
-Mylena Oliveira
-dev.mylenaoliveira@gmail.com
+---
 
+## 🪦 Autora
+
+**Mylena Oliveira**  
+[dev.mylenaoliveira@gmail.com](mailto:dev.mylenaoliveira@gmail.com)
