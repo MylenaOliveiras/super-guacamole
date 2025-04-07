@@ -33,7 +33,6 @@ Este projeto é uma API RESTful desenvolvida com **Quarkus** para registrar e co
 - `descricao`
 - `data`
 - `local`
-- `tipoCrime` (ENUM: ASSASSINATO, ABUSO, TORTURA, ETC)
 - `ativo` (boolean)
 - **Relacionamentos:**
   - `ManyToOne` com `SerialKiller`
