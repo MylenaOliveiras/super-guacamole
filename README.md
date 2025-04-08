@@ -22,7 +22,6 @@ Este projeto é uma API RESTful desenvolvida com **Quarkus** para registrar e co
 - `nomeCompleto`
 - `alcunha`
 - `nacionalidade`
-- 
 - **Relacionamento:** 
   - `OneToMany` com `Crime`
   - `OneToOne` com `Sentença`
