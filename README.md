@@ -6,7 +6,7 @@ Este projeto é uma API RESTful desenvolvida com **Quarkus** para registrar e co
 
 ## 📌 Tecnologias Utilizadas
 
-- Java 17+
+- Java 21
 - Quarkus (versão mais recente)
 - Hibernate + Panache ORM
 - Banco de Dados H2 (persistência em memória)
@@ -15,36 +15,41 @@ Este projeto é uma API RESTful desenvolvida com **Quarkus** para registrar e co
 - Maven
 
 ---
-
-## 🧠 Domínio de Negócio
-
 ### 🧍 Entidades Principais
 
 #### 🔪 SerialKiller
-- `id` (UUID)
+- `id`
 - `nomeCompleto`
 - `alcunha`
 - `nacionalidade`
-- `ativo` (boolean)
-- **Relacionamento:** `OneToMany` com `Crime`
+- 
+- **Relacionamento:** 
+  - `OneToMany` com `Crime`
+  - `OneToOne` com `Sentença`
 
 #### 💀 Crime
-- `id` (UUID)
+- `id`
 - `descricao`
 - `data`
 - `local`
-- `ativo` (boolean)
+- `arquivado` (boolean)
 - **Relacionamentos:**
   - `ManyToOne` com `SerialKiller`
   - `ManyToMany` com `Vitima`
 
 #### 🧍‍♀️ Vitima
-- `id` (UUID)
+- `id`
 - `nome`
 - `idade`
 - `genero`
 - `sobrevivente` (boolean)
 - **Relacionamento:** `ManyToMany` com `Crime`
+
+#### ⚖️️ Sentença
+- `id`
+- `descricao`
+- `data`
+- **Relacionamento:** `OneToOne` com `Serial Killer`
 
 ---
 
@@ -52,7 +57,7 @@ Este projeto é uma API RESTful desenvolvida com **Quarkus** para registrar e co
 
 - **One-to-Many:** SerialKiller → Crimes  
 - **Many-to-Many:** Crime ↔ Vítimas  
-- **Optional One-to-One (futuramente):** exemplo: Investigador Responsável, Perfil Psicológico
+- **One-to-One:** SerialKiller - Sentença
 
 ---
 
@@ -78,14 +83,6 @@ Este projeto é uma API RESTful desenvolvida com **Quarkus** para registrar e co
 - Listar vítimas
 - Obter por ID
 - **Delete definitivo:** atender solicitações de privacidade
-
----
-
-## 🚨 Validações e Tratamento de Erros
-
-- Todos os campos obrigatórios validados com Bean Validation
-- Mensagens de erro claras e com códigos HTTP apropriados
-- Tratamento global de exceções
 
 ---
 
@@ -116,14 +113,6 @@ curl -X POST http://localhost:8080/serial-killers \
   -H "Content-Type: application/json" \
   -d '{"nomeCompleto": "John Wayne Gacy", "alcunha": "Killer Clown", "nacionalidade": "Americana"}'
 ```
-
-### Criar Crime
-```bash
-curl -X POST http://localhost:8080/crimes \
-  -H "Content-Type: application/json" \
-  -d '{"descricao": "Ataque brutal", "data": "1978-05-22", "tipoCrime": "ASSASSINATO"}'
-```
-
 ---
 
 ## 👻 Observações
