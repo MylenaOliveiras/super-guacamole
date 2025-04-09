@@ -88,7 +88,7 @@ Este projeto é uma API RESTful desenvolvida com **Quarkus** para registrar e co
 ## 📚 Documentação da API
 
 Acesse o Swagger UI em:  
-http://localhost:8080/q/swagger-ui/
+https://super-guacamole-production.up.railway.app/swagger
 
 Você encontrará descrições completas dos endpoints, exemplos de uso e respostas esperadas.
 
