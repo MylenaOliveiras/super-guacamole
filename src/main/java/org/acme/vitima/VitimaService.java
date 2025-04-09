@@ -50,20 +50,12 @@ public class VitimaService {
 
         v.nomeCompleto = dto.nomeCompleto;
         v.idade = dto.idade;
+        v.genero = dto.genero;
         v.crimes = crimes;
 
         v.persist();
 
-
-        VitimaDetailsDTO vitima = new VitimaDetailsDTO(
-                v.id,
-                v.nomeCompleto,
-                v.genero,
-                v.idade,
-                v.crimes.stream().map(c -> c.id).collect(Collectors.toList())
-        );
-
-        return Response.ok(vitima).build();
+        return Response.ok().build();
     }
 
     @Transactional

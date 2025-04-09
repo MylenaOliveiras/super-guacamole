@@ -1,7 +1,5 @@
 package org.acme.crime;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
@@ -45,11 +43,6 @@ public class Crime extends PanacheEntity {
     @JoinColumn(name = "serial_killer_id")
     public SerialKiller serialKiller;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(
-            name = "crime_vitima",
-            joinColumns = @JoinColumn(name = "crime_id"),
-            inverseJoinColumns = @JoinColumn(name = "vitima_id")
-    )
+    @ManyToMany(mappedBy = "crimes", fetch = FetchType.LAZY)
     public List<Vitima> vitimas = new ArrayList<>();
 }

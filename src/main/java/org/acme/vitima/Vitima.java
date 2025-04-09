@@ -25,7 +25,13 @@ public class Vitima extends PanacheEntity {
     @Schema(description = "Genero da Vítima", example = "2")
     public GENDER genero;
 
-    @ManyToMany(mappedBy = "vitimas", fetch = FetchType.LAZY)
-    @JsonIgnore
+
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(
+            name = "crime_vitima",
+            joinColumns = @JoinColumn(name = "crime_id"),
+            inverseJoinColumns = @JoinColumn(name = "vitima_id")
+    )
     public List<Crime> crimes = new ArrayList<>();
+
 }
