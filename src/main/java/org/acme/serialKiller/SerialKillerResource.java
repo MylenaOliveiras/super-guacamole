@@ -6,6 +6,7 @@ import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.acme.idempotency.Idempotent;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
@@ -43,6 +44,7 @@ public class SerialKillerResource {
 
     @POST
     @Operation(summary = "Adiciona um novo serial killer")
+    @Idempotent(expireAfter = 300)
     public Response add(@Valid SerialKillerCreateDTO killer) {
         return skService.create(killer);
     }
