@@ -84,5 +84,4 @@ public class SerialKillerService {
         foundKiller.ativo = false;
         return Response.ok("Serial killer arquivado com sucesso.").build();
     }
-
 }

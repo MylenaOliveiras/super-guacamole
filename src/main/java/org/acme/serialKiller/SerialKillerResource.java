@@ -1,5 +1,6 @@
 package org.acme.serialKiller;
 
+import io.smallrye.faulttolerance.api.RateLimit;
 import jakarta.inject.Inject;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
@@ -8,6 +9,9 @@ import jakarta.ws.rs.core.Response;
 import org.eclipse.microprofile.openapi.annotations.Operation;
 import org.eclipse.microprofile.openapi.annotations.tags.Tag;
 
+import org.eclipse.microprofile.faulttolerance.Fallback;
+
+import java.time.temporal.ChronoUnit;
 import java.util.List;
 
 @Path("/serialKiller")
@@ -21,9 +25,21 @@ public class SerialKillerResource {
 
     @GET
     @Operation(summary = "Lista todos os serial killers ativos")
+    @RateLimit(value = 5, window = 1, windowUnit = ChronoUnit.MINUTES)
+    @Fallback(fallbackMethod = "fallbackGlobal")
     public List<SerialKillerSimpleDTO> listAll() {
         return skService.listAll();
     }
+
+    public List<SerialKillerSimpleDTO> fallbackGlobal() {
+        throw new WebApplicationException(
+                Response.status(Response.Status.TOO_MANY_REQUESTS)
+                        .entity("Rate limit excedido. Tente novamente mais tarde.")
+                        .type(MediaType.TEXT_PLAIN)
+                        .build()
+        );
+    }
+
 
     @POST
     @Operation(summary = "Adiciona um novo serial killer")
